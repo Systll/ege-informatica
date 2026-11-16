@@ -40,8 +40,6 @@ TASK_TITLES = {
 
 
 def load_task_types(number):
-    """Читает типы заданий из data/tasks/<номер>.json.
-    Если файла ещё нет, возвращает пустой список."""
     path = TASKS_DIR / f"{number}.json"
     if not path.exists():
         return []
