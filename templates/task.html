@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание {{ number }} — ЕГЭ Информатика</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <span class="logo-icon">&lt;/&gt;</span>
+            <span>ЕГЭ Информатика</span>
+        </div>
+
+        <nav class="navigation">
+            <a href="{{ url_for('index') }}">Главная</a>
+            <a href="{{ url_for('index') }}" class="active">Задания</a>
+            <a href="#">О проекте</a>
+        </nav>
+    </header>
+
+    <main class="content content-wide">
+        <a href="{{ url_for('index') }}" class="back-link">
+            ← Вернуться к заданиям
+        </a>
+
+        <section class="solution-header">
+            <h1>Задание № {{ number }}</h1>
+            <p>{{ title }}</p>
+        </section>
+
+        {% if types %}
+            {% for type in types %}
+            <article class="type-card">
+                <span class="type-label">Тип {{ loop.index }}</span>
+                <h2>{{ type.name }}</h2>
+
+                <div class="type-condition">
+                    <h3>Условие</h3>
+                    {{ type.condition | safe }}
+                </div>
+
+                <details class="method">
+                    <summary>
+                        <span>Решение</span>
+                        <span class="method-arrow"></span>
+                    </summary>
+
+                    <div class="method-content">
+                        {{ type.solution | safe }}
+                    </div>
+                </details>
+            </article>
+            {% endfor %}
+        {% else %}
+            <article class="type-card type-card-empty">
+                <h2>Скоро здесь появится разбор</h2>
+                <p>Типы заданий этого номера ещё готовятся.</p>
+            </article>
+        {% endif %}
+    </main>
+
+</body>
+</html>
