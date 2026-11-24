@@ -381,3 +381,59 @@ body {
         font-size: 22px;
     }
 }
+
+/* Плашка «Формулировка задания» */
+.task-statement {
+    margin-bottom: 28px;
+    padding: 28px 32px;
+
+    background-color: #111e33;
+    border: 1px solid #1e3a5f;
+    border-left: 4px solid #3b82f6;
+    border-radius: 14px;
+
+    line-height: 1.7;
+}
+
+.task-statement h2 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 24px;
+}
+
+.statement-part {
+    margin-bottom: 18px;
+    color: #cbd5e1;
+}
+
+.statement-part:last-child {
+    margin-bottom: 0;
+}
+
+.statement-part h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 17px;
+    color: #60a5fa;
+}
+
+@media (max-width: 650px) {
+    .task-statement {
+        padding: 22px;
+    }
+}
+
+/* Изображения внутри формулировок, условий и решений */
+.statement-part img,
+.type-condition img,
+.method-content img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 16px 0;
+    padding: 8px;
+
+    background-color: #ffffff; /* белый фон, чтобы чёрные схемы было видно */
+    border: 1px solid #263a59;
+    border-radius: 10px;
+}

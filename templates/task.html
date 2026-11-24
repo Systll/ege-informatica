@@ -31,6 +31,26 @@
             <p>{{ title }}</p>
         </section>
 
+        {% if formulation or requirement %}
+        <section class="task-statement">
+            <h2>Формулировка задания</h2>
+
+            {% if formulation %}
+            <div class="statement-part">
+                <h3>Общая формулировка</h3>
+                {{ formulation | safe }}
+            </div>
+            {% endif %}
+
+            {% if requirement %}
+            <div class="statement-part">
+                <h3>Что требуется</h3>
+                {{ requirement | safe }}
+            </div>
+            {% endif %}
+        </section>
+        {% endif %}
+
         {% if types %}
             {% for type in types %}
             <article class="type-card">

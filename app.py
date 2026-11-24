@@ -39,14 +39,14 @@ TASK_TITLES = {
 }
 
 
-def load_task_types(number):
-    """Читает типы заданий из data/tasks/<номер>.json.
-    Если файла ещё нет, возвращает пустой список."""
+def load_task_data(number):
+    """Читает data/tasks/<номер>.json целиком.
+    Если файла ещё нет, возвращает пустой словарь."""
     path = TASKS_DIR / f"{number}.json"
     if not path.exists():
-        return []
+        return {}
     with path.open(encoding="utf-8") as file:
-        return json.load(file)["types"]
+        return json.load(file)
 
 
 @app.route("/")
@@ -58,11 +58,14 @@ def index():
 def task(number):
     if number not in TASK_TITLES:
         abort(404)
+    data = load_task_data(number)
     return render_template(
         "task.html",
         number=number,
         title=TASK_TITLES[number],
-        types=load_task_types(number),
+        formulation=data.get("formulation"),
+        requirement=data.get("requirement"),
+        types=data.get("types", []),
     )
 
 
